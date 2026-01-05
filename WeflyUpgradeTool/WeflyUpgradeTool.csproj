@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>WeflyUpgradeTool</AssemblyName>
+    <RootNamespace>WeflyUpgradeTool</RootNamespace>
+    <ApplicationIcon></ApplicationIcon>
+    <Platforms>x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 内嵌驱动安装程序（存在时才嵌入，避免CI环境缺失导致失败） -->
+    <EmbeddedResource Include="..\CH341SER\DRVSETUP64\DRVSETUP64.exe" Condition="Exists('..\CH341SER\DRVSETUP64\DRVSETUP64.exe')">
+      <LogicalName>Embedded.Driver.DRVSETUP64.exe</LogicalName>
+    </EmbeddedResource>
+    <!-- 可选：将 Tools/unrar 下的 UnRAR*.exe 内嵌（存在时才嵌入） -->
+    <EmbeddedResource Include="..\Tools\unrar\*.exe" Condition="Exists('..\Tools\unrar')">
+      <LogicalName>Embedded.Unrar.%(Filename)%(Extension)</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="System.IO.Ports" Version="8.0.0" />
+  </ItemGroup>
+</Project>
+
+

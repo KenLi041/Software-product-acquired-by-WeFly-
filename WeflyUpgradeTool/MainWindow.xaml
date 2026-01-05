@@ -1,0 +1,47 @@
+<Window x:Class="WeflyUpgradeTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeflyUpgradeTool"
+        mc:Ignorable="d"
+        Title="Wefly 软件升级工具" Height="520" Width="760">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="串口:" VerticalAlignment="Center" Margin="0,0,8,0" />
+            <ComboBox x:Name="PortCombo" Width="140" VerticalAlignment="Center" />
+            <Button Content="刷新" Width="70" Margin="8,0,16,0" Click="OnRefreshPorts" />
+            <Button Content="安装驱动" Width="100" Margin="0,0,16,0" Click="OnInstallDriver" />
+            <TextBlock Text="设备类型:" VerticalAlignment="Center" Margin="0,0,8,0" />
+            <TextBlock Text="未连接" VerticalAlignment="Center" Foreground="Gray" x:Name="DeviceTypeText" />
+            <TextBlock Text="    版本号:" VerticalAlignment="Center" Margin="16,0,8,0" />
+            <TextBlock Text="--" VerticalAlignment="Center" x:Name="VersionText" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="连接设备" Width="120" Margin="0,0,10,0" Click="OnConnectClicked" />
+            <Button Content="加载文件" Width="120" Margin="0,0,10,0" Click="OnLoadFileClicked" x:Name="LoadFileButton" IsEnabled="False" />
+            <Button Content="开始升级" Width="120" Click="OnStartUpgradeClicked" x:Name="StartButton" IsEnabled="False" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,0,0,10">
+            <TextBlock Text="文件名:" />
+            <TextBlock Text="--" x:Name="FileNameText" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Vertical">
+            <TextBlock Text="升级中，请不要断电" Margin="0,0,0,6" />
+            <ProgressBar x:Name="Progress" Height="24" Minimum="0" Maximum="100" />
+            <TextBox x:Name="LogBox" Margin="0,10,0,0" Height="320" VerticalScrollBarVisibility="Auto" IsReadOnly="True" TextWrapping="Wrap" />
+        </StackPanel>
+    </Grid>
+</Window>
+
+
